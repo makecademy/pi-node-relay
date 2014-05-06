@@ -2,12 +2,12 @@
 function buttonClick(clicked_id){
 
     if (clicked_id == "on"){
-        $.get( "command", {
+        $.post( "command", {
         state: "on"} );  
     } 
 
     if (clicked_id == "off"){
-        $.get( "command", {
+        $.post( "command", {
         state: "off"} );  
     }
 }
