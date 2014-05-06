@@ -36,7 +36,7 @@ var fs = require('fs');
     // Answer
     response.writeHead(200, {"Content-Type": "text/plain"});
     response.write(index);
-    response.close();
+    response.end();
   }
 
   http.createServer(onRequest).listen(80);
