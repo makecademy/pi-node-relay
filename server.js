@@ -34,7 +34,7 @@ var fs = require('fs');
     } 
     
     // Answer
-    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.writeHead(200, {"Content-Type": "text/html"});
     response.write(index);
     response.end();
   }
