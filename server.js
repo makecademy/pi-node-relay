@@ -2,14 +2,6 @@ var http = require("http");
 var url = require("url");
 var querystring = require("querystring");
 var gpio = require("pi-gpio");
-var fs = require('fs');
-
-	fs.readFile('./interface.html', function (err, data) {
-	    if (err) {
-	        throw err;
-	    }
-	    index = data;
-	});
 
   function onRequest(request, response) {
 
@@ -35,7 +27,6 @@ var fs = require('fs');
     
     // Answer
     response.writeHead(200, {"Content-Type": "text/html"});
-    response.write(index);
     response.end();
   }
 
