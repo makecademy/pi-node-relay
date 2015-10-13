@@ -28,23 +28,21 @@ app.get("/send", function(request, response){
     // Apply command
     if (queryData.state == 'on') {
       
-      gpio.setup(7, gpio.DIR_OUT, write);
-      function write() {
+      gpio.setup(7, gpio.DIR_OUT, function() {
         gpio.write(7, true, function(err) {
           if (err) throw err;
-          console.log('Written to pin');
+          console.log('Written 1 to pin');
          });
-      }
+      });
     }
     if (queryData.state == 'off') {
         
-      gpio.setup(7, gpio.DIR_OUT, write);
-      function write() {
+      gpio.setup(7, gpio.DIR_OUT, function() {
         gpio.write(7, false, function(err) {
           if (err) throw err;
-          console.log('Written to pin');
+          console.log('Written 0 to pin');
          });
-      }
+      });
     } 
     
     // Answer
