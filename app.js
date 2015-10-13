@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var querystring = require("querystring");
 var url = require('url');
-var gpio = require('pi-gpio');
+var gpio = require('rpi-gpio');
 
 // Create app
 var app = express();
@@ -27,18 +27,24 @@ app.get("/send", function(request, response){
 
     // Apply command
     if (queryData.state == 'on') {
-      gpio.open(7, "output", function(err) {     
-        gpio.write(7, 1, function() {  
-            gpio.close(7);                   
-        });
-    });
+      
+      gpio.setup(7, gpio.DIR_OUT, write);
+      function write() {
+        gpio.write(7, true, function(err) {
+          if (err) throw err;
+          console.log('Written to pin');
+         });
+      }
     }
     if (queryData.state == 'off') {
-    gpio.open(7, "output", function(err) {     
-        gpio.write(7, 0, function() {  
-            gpio.close(7);                   
-        });
-    });
+        
+      gpio.setup(7, gpio.DIR_OUT, write);
+      function write() {
+        gpio.write(7, false, function(err) {
+          if (err) throw err;
+          console.log('Written to pin');
+         });
+      }
     } 
     
     // Answer
